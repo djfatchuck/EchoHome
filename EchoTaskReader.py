@@ -1,23 +1,24 @@
+import getpass
 import PyEcho
+import time
 from settings import *
 
+if USER == '' or PASSWORD == '':
+    USER = raw_input('Email: ')
+    PASSWORD = getpass.getpass()
 
 class EchoTaskReader():
 
     def __init__(self):
         self.echo = PyEcho.PyEcho(USER, PASSWORD)
-        self.task_list = []
-        self.update_time = 600
+        self.sleep_time = 5
+        self.command_list = {}
 
-    def update_tasks(self):
-        tasks = self.echo.tasks()
-
-        for task in tasks:
-            if task not in self.task_list:
-                self.task_list.append(task)
-
-    def run_next_task(self):
-        task = self.task_list.pop(0)
-
-    def change_update_time(self, time):
-        self.update_time = time
+    def run(self):
+        if self.echo:
+            tasks = self.echo.tasks()
+            for task in tasks:
+                command = task['text']
+                #TODO add commands handling
+                self.echo.deleteTask(task)
+        time.sleep(self.sleep_time)

@@ -1,3 +1,10 @@
 USER = ''
 PASSWORD = ''
-from local_settings import *
+
+MILIGHT_IP = ''
+MILIGHT_PORT = ''
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
