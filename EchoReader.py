@@ -1,11 +1,6 @@
-import getpass
 import PyEcho
 import time
 from settings import *
-
-if USER == '' or PASSWORD == '':
-    USER = raw_input('Email: ')
-    PASSWORD = getpass.getpass()
 
 
 class EchoToDoReader():
